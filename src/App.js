@@ -2,6 +2,7 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { parseRouteToNavbar, transferDataByRoutes } from './helpers';
+import { ROUTES_CONFIG } from './routes/RoutesConfig';
 import { Layout } from 'antd';
 import useBreakpoint from 'antd/lib/grid/hooks/useBreakpoint';
 import MainApi from '../src/api';
@@ -9,81 +10,6 @@ import { GameContainer, MyDrawer, Navbar } from './components';
 import { useDispatch } from 'react-redux';
 import { setJackpots } from './redux/actions/jackpotAction';
 const { Header, Content } = Layout;
-
-const ROUTES_CONFIG = [
-  {
-    id: 'top',
-    sortOrder: 1,
-    name: 'Top Game',
-    label: 'in top',
-  },
-  {
-    id: 'new',
-    sortOrder: 2,
-    name: 'New Games',
-    label: 'new release',
-  },
-  {
-    id: 'slots',
-    sortOrder: 3,
-    name: 'Slots',
-    label: 'slots',
-  },
-  {
-    id: 'jackpots',
-    sortOrder: 4,
-    name: 'Jackpots',
-    label: 'test',
-  },
-  {
-    id: 'live',
-    sortOrder: 5,
-    name: 'Live',
-    label: 'test',
-  },
-  {
-    id: 'blackjack',
-    sortOrder: 6,
-    name: 'Blackjack',
-    label: 'test',
-  },
-  {
-    id: 'roulette',
-    sortOrder: 7,
-    name: 'Roulette',
-    label: 'test',
-  },
-  {
-    id: 'table',
-    sortOrder: 8,
-    name: 'Table',
-    label: 'test',
-  },
-  {
-    id: 'poker',
-    sortOrder: 9,
-    name: 'Poker',
-    label: 'test',
-  },
-  {
-    id: 'ball',
-    sortOrder: 10,
-    name: 'Ball',
-    label: 'test',
-  },
-  {
-    id: 'virtual',
-    sortOrder: 11,
-    name: 'Virtual',
-    label: 'test',
-  },
-  {
-    id: 'fun',
-    sortOrder: 12,
-    name: 'Fun',
-    label: 'test',
-  },
-];
 
 function App() {
   const routes = parseRouteToNavbar(ROUTES_CONFIG);
@@ -144,7 +70,7 @@ function App() {
           <GameContainer data={gameDisplay} />;
         </Content>
       </Layout>
-    </Router>
+      </Router>
   );
 }
 
