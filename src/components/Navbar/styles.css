@@ -30,8 +30,8 @@
   display: none;
 }
 .navbar--md .navbar__drawer-btn {
-  width: 30px;
-  height: 30px;
+  width: var(--height-navbar);
+  height: var(--height-navbar);
   background-color: var(--green-primary-color);
   outline: none;
   border: none;
