@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { parseRouteToNavbar, transferDataByRoutes } from './helpers';
 import { ROUTES_CONFIG } from './routes/RoutesConfig';
 import { Layout } from 'antd';
@@ -46,6 +47,7 @@ function App() {
   }, []);
 
   return (
+    <Router>
       <Layout className='app'>
         <Header className='header'>
           <Navbar
@@ -68,6 +70,7 @@ function App() {
           <GameContainer data={gameDisplay} />;
         </Content>
       </Layout>
+      </Router>
   );
 }
 
