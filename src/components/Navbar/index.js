@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './styles.css';
 import useBreakpoint from 'antd/lib/grid/hooks/useBreakpoint';
 import { MenuOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
 
 const NavbarItem = ({ route, isActive = false, onSelectTab }) => {
   const { isOther = false } = route || {};
