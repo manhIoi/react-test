@@ -1,6 +1,6 @@
 const strings = {
     // navbar 
-    topGame :'Top Game',
+    topGame :'Top Games',
     newGame : 'New Games',
     slots :'Slots',
     jackpots :'Jackpots',
