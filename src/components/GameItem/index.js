@@ -1,29 +1,35 @@
 import React from 'react';
-import {Card, Image} from 'antd'
+import { Badge, Card, Image } from 'antd'
 
 import { useSelector } from 'react-redux';
 import styles from './styles.css'
 
 
-const GameItem = ({ game }) => {
+const GameItem = ({ game, showTag = false }) => {
   const { jackpots } = useSelector(state => state);
   const jackpotMatched = jackpots.find?.(jackpot => jackpot?.game === game?.id);
   const { amount } = jackpotMatched || {};
+
+  const renderGameImage = () =>
+
+    <Image
+      fallback='/undefined_img.jpg'
+      src={game?.image}
+      preview={false}
+    />
+
   return (
-    <div className="item">
-      <Card 
+      <Card
         className={styles.itemCard}
         bordered={false}
-    >
-      <Image
-        fallback='/undefined_img.jpg'
-        src={game?.image} 
-        preview={false}
-      />
-    </Card>
-    </div>
-    
+      >
+        <Badge.Ribbon text="Hippies">
+          {renderGameImage()}
+        </Badge.Ribbon>
+
+      </Card>
+
   );
 };
 
-export default GameItem;  
+export default GameItem;
