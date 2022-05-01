@@ -1,0 +1,43 @@
+.ant-layout-header {
+  background-color: var(--dark-color) !important;
+}
+.navbar--md {
+  position: relative;
+}
+.navbar--md .navbar__container {
+  display: none !important;
+}
+.navbar__container {
+  display: flex;
+  flex-direction: row;
+}
+.navbar__item {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: var(--dark-color);
+  color: var(--light-color) !important;
+  font-weight: bold !important;
+}
+.navbar__item.selected {
+  background-color: var(--green-primary-color);
+}
+
+.navbar__drawer-btn {
+  display: none;
+}
+.navbar--md .navbar__drawer-btn {
+  width: 30px;
+  height: 30px;
+  background-color: var(--green-primary-color);
+  outline: none;
+  border: none;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
