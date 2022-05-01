@@ -15,12 +15,11 @@ const GameItem = ({ game, showBadge = true }) => {
     minimumFractionDigits: 2
   });
 
-
   const AmountItem = useCallback(({ amount = 123456 }) => (
     <div className='jackpot-bar'>
       <p className='jackpot-bar__text'>{formatter.format(amount)}</p>
     </div>
-  ),[]);
+  ), []);
 
   const renderNormalGame = () => (
     <div>
@@ -51,9 +50,8 @@ const GameItem = ({ game, showBadge = true }) => {
           ? renderGameWithBadge('TOP')
           : showBadge && game?.categories.includes('new') 
             ? renderGameWithBadge('NEW')
-            : renderNormalGame()
+            : renderNormalGame() //TODO: fix jackpot amount bar for top/new page
       }
-
     </Card>
   );
 };

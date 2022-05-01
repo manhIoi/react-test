@@ -28,7 +28,6 @@ function App() {
 
   const onSelectTab = tab => {
     setSelectedTab(tab);
-    console.log(tab.id)
   };
 
   useEffect(() => {

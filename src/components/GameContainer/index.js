@@ -5,7 +5,6 @@ import GameItem from '../GameItem';
 const GameContainer = ({ data = [], tabId = {} }) => {
   const showBadge = !['top', 'new'].includes(tabId)
   const renderItem = () => {
-    console.log(showBadge)
     return data?.map?.((game, index) => (
       <Col
         key={game?.id || index}
