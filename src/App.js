@@ -28,6 +28,7 @@ function App() {
 
   const onSelectTab = tab => {
     setSelectedTab(tab);
+    console.log(tab.id)
   };
 
   useEffect(() => {
@@ -67,7 +68,7 @@ function App() {
           ) : null}
         </Header>
         <Content className='body'>
-          <GameContainer data={gameDisplay} />;
+          <GameContainer data={gameDisplay} tabId={selectedTab.id}/>;
         </Content>
       </Layout>
       </Router>
