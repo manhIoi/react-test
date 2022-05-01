@@ -6,7 +6,7 @@ const STATUS_CODE = {
   // define error code here
 };
 
-const BASE_URL = 'http://stage.whgstage.com/front-end-test';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export class MainApi {
   static getGames = () => {
