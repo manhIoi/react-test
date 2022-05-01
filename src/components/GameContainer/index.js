@@ -2,7 +2,8 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import GameItem from '../GameItem';
 
-const GameContainer = ({ data = [] }) => {
+const GameContainer = ({ data = [], tabId = {} }) => {
+  const showBadge = !['top', 'new'].includes(tabId)
   const renderItem = () => {
     return data?.map?.((game, index) => (
       <Col
@@ -11,7 +12,7 @@ const GameContainer = ({ data = [] }) => {
         md={{ span: 12 }}
         lg={{ span: 8 }}
         xl={{ span: 4 }}>
-        <GameItem game={game} />
+        <GameItem game={game} showBadge={showBadge} />
       </Col>
     ));
   };

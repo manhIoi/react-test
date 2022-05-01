@@ -68,7 +68,7 @@ function App() {
           ) : null}
         </Header>
         <Content className='body'>
-          <GameContainer data={gameDisplay} />;
+          <GameContainer data={gameDisplay} tabId={selectedTab.id}/>;
         </Content>
       </Layout>
     </Router>
