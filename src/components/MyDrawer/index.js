@@ -1,7 +1,14 @@
 import React from 'react';
 import { Drawer, Button } from 'antd';
+import './styles.css';
 
-const MyDrawer = ({ onClose, isOpen, onSelectTab }) => {
+const MyDrawer = ({
+  onClose,
+  isOpen,
+  onSelectTab,
+  routes = [],
+  selectedTab,
+}) => {
   return (
     <Drawer
       className='my-drawer'
@@ -9,7 +16,17 @@ const MyDrawer = ({ onClose, isOpen, onSelectTab }) => {
       onClose={onClose}
       closable={true}
       visible={isOpen}>
-      {/* render route here */}
+      {routes?.map?.(route => {
+        return (
+          <div
+            className={`my-drawer-item ${
+              selectedTab?.id === route?.id ? 'my-drawer-item--selected' : ''
+            }`}
+            onClick={() => onSelectTab(route)}>
+            <h2>{route?.name}</h2>
+          </div>
+        );
+      })}
     </Drawer>
   );
 };
