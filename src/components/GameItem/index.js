@@ -43,6 +43,7 @@ const GameItem = memo(({ game, showBadge = true }) => {
           fallback={FALL_BACK}
           src={game?.image}
           preview={false}
+          onError={() => true}
         />
       </div>
       <div className='game-item__image--hidden'>
