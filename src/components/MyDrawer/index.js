@@ -1,7 +1,7 @@
 import React from 'react';
 import { Drawer, Button } from 'antd';
 
-const MyDrawer = ({ onClose, isOpen }) => {
+const MyDrawer = ({ onClose, isOpen, onSelectTab }) => {
   return (
     <Drawer
       className='my-drawer'

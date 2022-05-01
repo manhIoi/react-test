@@ -20,6 +20,7 @@
   background-color: var(--dark-color);
   color: var(--light-color) !important;
   font-weight: bold !important;
+  cursor: pointer;
 }
 .navbar__item.selected {
   background-color: var(--green-primary-color);

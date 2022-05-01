@@ -3,28 +3,37 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 import useBreakpoint from 'antd/lib/grid/hooks/useBreakpoint';
 import { MenuOutlined } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
 
-const NavbarItem = ({ route }) => {
+const NavbarItem = ({ route, isActive = false, onSelectTab }) => {
   const { isOther = false } = route || {};
+  const classNameNavbarItem = `navbar__item ${isActive ? 'selected' : ''}`;
+  const handleSelectTab = () => {
+    onSelectTab(route);
+  };
   if (isOther) {
-    // return something other
-    return <div className='navbar__item'>{route?.name || ''}</div>;
+    return <div className={classNameNavbarItem}>{route?.name || ''}</div>;
   }
   return (
-    <Link className='navbar__item' to={route.path}>
+    <div className={classNameNavbarItem} onClick={handleSelectTab}>
       {route?.name || ''}
-    </Link>
+    </div>
   );
 };
 
-const Navbar = ({ routes = [], onOpen }) => {
+const Navbar = ({ routes = [], onOpen, onSelectTab, selectedTab }) => {
   const { lg } = useBreakpoint();
 
   return (
     <div className={`navbar ${!lg ? 'navbar--md' : ''}`}>
       <div className='navbar__container'>
-        {routes?.map?.((route) => (
-          <NavbarItem key={`NAVBAR_ITEM_${route?.id}`} route={route} />
+        {routes?.map?.((route, index) => (
+          <NavbarItem
+            onSelectTab={onSelectTab}
+            isActive={selectedTab?.id === route?.id}
+            key={`NAVBAR_ITEM_${route?.id}`}
+            route={route}
+          />
         ))}
       </div>
       <button className='navbar__drawer-btn' onClick={onOpen}>
