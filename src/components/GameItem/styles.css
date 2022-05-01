@@ -8,3 +8,22 @@
 .ant-image-img {
     border-radius: 20px;
 }
+
+.jackpot-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.jackpot-bar__text {
+    color: white;
+    z-index: 10000;
+    margin: 0.4em;
+    font-weight: bold
+
+}
