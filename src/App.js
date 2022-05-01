@@ -6,6 +6,8 @@ import { Layout } from 'antd';
 import useBreakpoint from 'antd/lib/grid/hooks/useBreakpoint';
 import MainApi from '../src/api';
 import { GameContainer, MyDrawer, Navbar } from './components';
+import { useDispatch } from 'react-redux';
+import { setJackpots } from './redux/actions/jackpotAction';
 const { Header, Content } = Layout;
 
 const ROUTES_CONFIG = [
@@ -78,6 +80,7 @@ function App() {
   const [selectedTab, setSelectedTab] = useState(routes?.[0]);
   const [games, setGames] = useState();
   const gameDisplay = games?.[selectedTab?.id] || [];
+  const dispatch = useDispatch();
   const onOpenDrawer = () => {
     setIsOpen(true);
   };
@@ -94,6 +97,15 @@ function App() {
       const gamesTransfer = transferDataByRoutes(ROUTES_CONFIG, gamesData);
       setGames(gamesTransfer);
     });
+
+    const reloadJackpots = setInterval(() => {
+      MainApi.getJackpots().then(data => {
+        dispatch(setJackpots(data));
+      });
+    }, 2000);
+    return () => {
+      clearInterval(reloadJackpots);
+    };
   }, []);
 
   return (

@@ -1,3 +1,7 @@
 export const TAB_ACTION_TYPES = {
   SET_CURRENT_TAB: 'SET_CURRENT_TAB',
 };
+
+export const JACKPOTS_TYPES = {
+  SET_JACKPOTS: 'SET_JACKPOTS',
+};
