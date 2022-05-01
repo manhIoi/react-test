@@ -1,10 +1,17 @@
-import React, { useCallback } from 'react';
-import { Badge, Card, Image } from 'antd';
-
+import React, { memo, useCallback } from 'react';
+import { Card, Image } from 'antd';
 import { useSelector } from 'react-redux';
-import styles from './styles.css';
+import { IMAGE_SOURCE } from '../../constants';
+import styles from './styles.css'
 
-const GameItem = ({ game, showBadge = true }) => {
+const {
+  NEW_TAG,
+  TOP_TAG,
+  FALL_BACK,
+  PLAY
+} = IMAGE_SOURCE;
+
+const GameItem = memo(({ game, showBadge = true }) => {
   const { jackpots } = useSelector((state) => state);
   const jackpotMatched = jackpots.find?.(
     (jackpot) => jackpot?.game === game?.id
@@ -16,47 +23,58 @@ const GameItem = ({ game, showBadge = true }) => {
     minimumFractionDigits: 2,
   });
 
-  const renderGameImage = () => (
-    <Image fallback='/undefined_img.jpg' src={game?.image} preview={false} />
-  );
+  const AmountItem = useCallback(({ amount = 0 }) => (
+    <div className='game-item__jackpot-bar'>
+      <p>{formatter.format(amount)}</p>
+    </div>
+  ), []);
 
-  const AmountItem = useCallback(
-    ({ amount = 123456 }) => (
-      <div className='jackpot-bar'>
-        <p className='jackpot-bar__text'>{formatter.format(amount)}</p>
-      </div>
-    ),
-    []
-  );
+  const GameName = useCallback(({ name = '' }) => (
+    <div className='game-item__name'>
+      <p>{name}</p>
+    </div>
+  ), []);
 
-  const renderNormalGame = () => (
-    <div>
-      <>
+  const NormalGame = useCallback(() => (
+    <div className='game-item'>
+      <div className='game-item__image'>
+        <div className='game-item__image--normal'></div>
         <Image
-          fallback='/undefined_img.jpg'
+          fallback={FALL_BACK}
           src={game?.image}
           preview={false}
         />
-      </>
-      {amount && <AmountItem />}
+      </div>
+      <div className='game-item__image--hidden'>
+        <Image
+          fallback={FALL_BACK}
+          src={PLAY}
+          preview={false}
+        />
+      </div>
+      {amount && <AmountItem amount={amount} />}
+      {game?.name && <GameName name={game?.name} />}
     </div>
-  );
+  ), [jackpots]);
 
-  const renderGameWithBadge = (badgeContent) => (
-    <Badge.Ribbon text={badgeContent}>{renderNormalGame()}</Badge.Ribbon>
-  );
+  const ItemBadge = useCallback(({ imgSrc }) => (
+    <div className='game-item__badge'>
+      <img src={imgSrc} alt='' />
+    </div>
+  ), []);
 
   return (
-    <Card className={`${styles.itemCard} my-card`} bordered={false}>
+    <Card className='my-card' bordered={false}>
+      <NormalGame />
       {
-        showBadge && game?.categories.includes('top')
-          ? renderGameWithBadge('TOP')
-          : showBadge && game?.categories.includes('new')
-          ? renderGameWithBadge('NEW')
-          : renderNormalGame() //TODO: fix jackpot amount bar for top/new page
+        (showBadge && game?.categories.includes('top'))
+          ? <ItemBadge imgSrc={NEW_TAG} />
+          : (showBadge && game?.categories.includes('new'))
+            ? <ItemBadge imgSrc={TOP_TAG} />
+            : null
       }
     </Card>
   );
-};
+});
 
 export default GameItem;

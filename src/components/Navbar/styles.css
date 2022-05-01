@@ -40,6 +40,7 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  font-size: 1rem;
   background-color: var(--dark-color) !important;
   color: var(--light-color) !important;
   font-weight: bold !important;

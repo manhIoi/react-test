@@ -27,7 +27,6 @@ function App() {
   };
 
   const onSelectTab = tab => {
-    console.log(tab);
     setSelectedTab(tab);
   };
 
@@ -68,7 +67,7 @@ function App() {
           ) : null}
         </Header>
         <Content className='body'>
-          <GameContainer data={gameDisplay} tabId={selectedTab.id}/>;
+          <GameContainer data={gameDisplay} tabId={selectedTab.id}/>
         </Content>
       </Layout>
     </Router>
