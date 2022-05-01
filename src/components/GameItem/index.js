@@ -56,7 +56,7 @@ const GameItem = memo(({ game, showBadge = true }) => {
       {amount && <AmountItem amount={amount} />}
       {game?.name && <GameName name={game?.name} />}
     </div>
-  ), [jackpots]);
+  ), [amount]);
 
   const ItemBadge = useCallback(({ imgSrc }) => (
     <div className='game-item__badge'>
