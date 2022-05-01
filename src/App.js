@@ -122,7 +122,7 @@ function App() {
             <MyDrawer
               selectedTab={selectedTab}
               onSelectTab={onSelectTab}
-              routes={routes}
+              routes={ROUTES_CONFIG}
               onClose={onCloseDrawer}
               isOpen={isOpen}
             />
