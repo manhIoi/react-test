@@ -1,9 +1,9 @@
 const MAX_NAVBAR_ITEM_SHOWN = 9;
 
-const parseRouteToNavbar = routes => {
+const parseRouteToNavbar = (routes) => {
   if (!routes?.length) return [];
   const routesSort = routes?.sort?.((a, b) => a?.sortOrder - b?.sortOrder);
-  const routesMapped = routesSort?.map?.(route => ({
+  const routesMapped = routesSort?.map?.((route) => ({
     ...route,
     label: route?.name,
   }));
@@ -21,7 +21,7 @@ const parseRouteToNavbar = routes => {
   return routeCombined;
 };
 
-const convertRoutesToObject = routes => {
+const convertRoutesToObject = (routes) => {
   let result = {};
   for (let index = 0; index < routes.length; index++) {
     const route = routes[index];

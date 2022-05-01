@@ -1,18 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './styles.css';
 import useBreakpoint from 'antd/lib/grid/hooks/useBreakpoint';
 import { MenuOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
+import { Menu } from 'antd';
 
-const NavbarItem = ({ route, isActive = false, onSelectTab }) => {
-  const { isOther = false } = route || {};
-  const classNameNavbarItem = `navbar__item ${isActive ? 'selected' : ''}`;
+const NavbarItem = ({ route, selectedTab, onSelectTab }) => {
+  const { isOther = false, children = [] } = route || {};
+  const classNameNavbarItem = `navbar__item ${
+    selectedTab?.id === route?.id ? 'selected' : ''
+  }`;
   const handleSelectTab = () => {
     onSelectTab(route);
   };
   if (isOther) {
-    return <div className={classNameNavbarItem}>{route?.name || ''}</div>;
+    return (
+      <Menu className={classNameNavbarItem}>
+        <Menu.SubMenu key='SubMenu' title={route?.name}>
+          {children?.map?.(item => (
+            <Menu.Item
+              onClick={() => onSelectTab(item)}
+              className={`navbar__item ${
+                item?.id === selectedTab?.id ? 'selected' : ''
+              }`}
+              key={item?.id}>
+              {item?.name || ''}
+            </Menu.Item>
+          ))}
+        </Menu.SubMenu>
+      </Menu>
+    );
   }
   return (
     <div className={classNameNavbarItem} onClick={handleSelectTab}>
@@ -30,7 +46,7 @@ const Navbar = ({ routes = [], onOpen, onSelectTab, selectedTab }) => {
         {routes?.map?.((route, index) => (
           <NavbarItem
             onSelectTab={onSelectTab}
-            isActive={selectedTab?.id === route?.id}
+            selectedTab={selectedTab}
             key={`NAVBAR_ITEM_${route?.id}`}
             route={route}
           />
