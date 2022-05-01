@@ -27,6 +27,7 @@ function App() {
   };
 
   const onSelectTab = tab => {
+    console.log(tab);
     setSelectedTab(tab);
   };
 
@@ -70,7 +71,7 @@ function App() {
           <GameContainer data={gameDisplay} />;
         </Content>
       </Layout>
-      </Router>
+    </Router>
   );
 }
 

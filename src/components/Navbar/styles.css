@@ -1,6 +1,29 @@
 .ant-layout-header {
   background-color: var(--dark-color) !important;
 }
+.ant-menu-vertical .ant-menu-submenu-selected {
+  color: var(--light-color) !important;
+}
+
+.ant-menu-submenu-active {
+  color: var(--green-primary-color) !important;
+}
+
+.ant-menu-submenu-title:hover {
+  color: var(--green-primary-color) !important;
+}
+
+.ant-menu {
+  background-color: var(--dark-color) !important;
+}
+
+.ant-menu-vertical {
+  border: 0 !important;
+}
+
+.ant-menu-submenu-arrow {
+  display: none;
+}
 .navbar--md {
   position: relative;
 }
@@ -17,15 +40,22 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  background-color: var(--dark-color);
+  background-color: var(--dark-color) !important;
   color: var(--light-color) !important;
   font-weight: bold !important;
   cursor: pointer;
+  transition: all 0.3s;
 }
 .navbar__item.selected {
-  background-color: var(--green-primary-color);
+  background-color: var(--green-primary-color) !important;
+  color: var(--light-color) !important;
 }
-
+.navbar__item:hover {
+  color: var(--green-primary-color) !important;
+}
+.navbar__item.selected:hover {
+  color: var(--light-color) !important;
+}
 .navbar__drawer-btn {
   display: none;
 }
